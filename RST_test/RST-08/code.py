@@ -104,7 +104,7 @@ def menu_scene():
     text = []
     text1 = stage.Text(width = 29, height =12, font =None, palette =constant.RED_PALETTE, buffer=None)
     text1.move(20, 10)
-    text1.text("I HATE THIS")
+    text1.text("GAME.GAME by Dylan M")
     text.append(text1)
 
     text2 = stage.Text(width = 29, height =12, font =None, palette =constant.RED_PALETTE, buffer=None)
@@ -152,20 +152,21 @@ def game_scene():
     # Get sound ready
     pew_sound = open("pew.wav", 'rb')
     sound = ugame.audio
-    sound.stop
+    sound.stop()
     sound.mute(False)
 
     # Set the background to image 0 in the image bank 
     # set size to 10 X 8 tiles of 16 X 16
-    background = stage.Grid(background_image, constant.SCREEN_X,
-                             constant.SCREEN_Y)
+    background = stage.Grid(background_image, constant.SCREEN_GRID_X,
+                             constant.SCREEN_GRID_Y)
+    
     for x_location in range(constant.SCREEN_GRID_X):
         for y_location in range(constant.SCREEN_GRID_Y):
-            title_picked = random.randint(1,3)
-            background.title(x_location, y_location, title_picked)
+            tile_picked = random.randint(1,3)
+            background.tile(x_location, y_location, tile_picked)
     
     # A sprite that will updated every frame
-    ship = stage.Sprite(sprite_image, 5, 75, constant.SCREEN_Y - (2* constant.SPRITE_SIZE))
+    ship = stage.Sprite(sprite_image, 5, 75, constant.SCREEN_Y - (2 * constant.SPRITE_SIZE))
 
     alien = stage.Sprite(sprite_image, 9, 
                          int(constant.SCREEN_GRID_X / 2 - constant.SPRITE_SIZE / 2), 
@@ -185,7 +186,7 @@ def game_scene():
         keys = ugame.buttons.get_pressed()
         
         # A button
-        if keys & ugame.K_O != 0:
+        if keys & ugame.K_X != 0:
             if a_button == constant.button_state["button_up"]:
                 a_button = constant.button_state["button_just_pressed"]
             elif a_button == constant.button_state["button_just_pressed"]:
@@ -197,7 +198,7 @@ def game_scene():
             else:
                 a_button = constant.button_state["button_up"]
             
-        if keys & ugame.K_X != 0:
+        if keys & ugame.K_O != 0:
             pass
         if keys & ugame.K_START:
             pass
@@ -232,4 +233,4 @@ def game_scene():
         game.tick()
     
 if __name__ == "__main__":
-    menu_scene() # type: ignore
+    splash_scene()
