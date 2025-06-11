@@ -143,7 +143,7 @@ def game_scene():
     background_image = stage.Bank.from_bmp16("space_aliens_background.bmp")
     sprite_image = stage.Bank.from_bmp16("space_aliens.bmp")
 
-    # buttonsthat you wnat to keep state information on
+    # buttons that you wnat to keep state information on
     a_button = constant.button_state["button_up"]
     b_button = constant.button_state["button_up"]
     start_button = constant.button_state["button_up"]
@@ -152,17 +152,18 @@ def game_scene():
     # Get sound ready
     pew_sound = open("pew.wav", 'rb')
     sound = ugame.audio
-    sound.stop
+    sound.stop()
     sound.mute(False)
 
     # Set the background to image 0 in the image bank 
     # set size to 10 X 8 tiles of 16 X 16
-    background = stage.Grid(background_image, constant.SCREEN_X,
-                             constant.SCREEN_Y)
+    background = stage.Grid(background_image, constant.SCREEN_GRID_X,
+                             constant.SCREEN_GRID_Y)
+
     for x_location in range(constant.SCREEN_GRID_X):
         for y_location in range(constant.SCREEN_GRID_Y):
-            title_picked = random.randint(1,3)
-            background.title(x_location, y_location, title_picked)
+            tile_picked = random.randint(1,3)
+            background.tile(x_location, y_location, tile_picked)
     
     # A sprite that will updated every frame
     ship = stage.Sprite(sprite_image, 5, 75, constant.SCREEN_Y - (2* constant.SPRITE_SIZE))
@@ -253,4 +254,4 @@ def game_scene():
         game.tick()
     
 if __name__ == "__main__":
-    menu_scene() # type: ignore
+    splash_scene() # type: ignore
