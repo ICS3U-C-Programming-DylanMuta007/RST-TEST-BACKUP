@@ -161,13 +161,14 @@ def game_scene():
     # Get sound ready
     pew_sound = open("pew.wav", 'rb')
     sound = ugame.audio
-    sound.stop
+    sound.stop()
     sound.mute(False)
 
     # Set the background to image 0 in the image bank 
     # set size to 10 X 8 tiles of 16 X 16
-    background = stage.Grid(background_image, constant.SCREEN_X,
-                             constant.SCREEN_Y)
+    background = stage.Grid(background_image, constant.SCREEN_GRID_X,
+                             constant.SCREEN_GRID_Y)
+
     for x_location in range(constant.SCREEN_GRID_X):
         for y_location in range(constant.SCREEN_GRID_Y):
             title_picked = random.randint(1,3)
@@ -280,4 +281,4 @@ def game_scene():
         game.tick()
     
 if __name__ == "__main__":
-    menu_scene() # type: ignore
+    splash_scene() # type: ignore
