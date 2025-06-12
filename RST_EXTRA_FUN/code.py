@@ -182,11 +182,6 @@ def game_scene():
     # set size to 10 X 8 tiles of 16 X 16
     background = stage.Grid(background_image, constant.SCREEN_GRID_X,
                              constant.SCREEN_GRID_Y)
-
-    for x_location in range(constant.SCREEN_GRID_X):
-        for y_location in range(constant.SCREEN_GRID_Y):
-            tile_picked = random.randint(1,3)
-            background.tile(x_location, y_location, tile_picked)
     
     # A sprite that will updated every frame
     ship = stage.Sprite(sprite_image, 5, 75, constant.SCREEN_Y - (2* constant.SPRITE_SIZE))
