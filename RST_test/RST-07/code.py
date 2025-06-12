@@ -65,7 +65,7 @@ def game_scene():
     # Get sound ready
     pew_sound = open("pew.wav", 'rb')
     sound = ugame.audio
-    sound.stop
+    sound.stop()
     sound.mute(False)
 
     # Set the background to image 0 in the image bank 
